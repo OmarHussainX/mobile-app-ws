@@ -1,7 +1,7 @@
 #  A Java-based RESTful Web Service app
 
 Having built full-stack apps using Node+Express and python+Flask, this
-project explores the creation of RESTful Web Service in Java [(Maven build)](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin/) - with a complete model, view and controller layer (including relational database integration) - using:
+project explores the creation of a RESTful Web Service in Java [(Maven build)](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin/) - with a complete model, view and controller layer (including relational database integration) - using:
 
 * [Spring Boot](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent)
 * [Spring Boot Web Starter](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web)
