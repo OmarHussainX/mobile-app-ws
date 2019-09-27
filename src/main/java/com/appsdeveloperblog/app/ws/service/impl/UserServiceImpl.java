@@ -3,6 +3,7 @@ package com.appsdeveloperblog.app.ws.service.impl;
 import com.appsdeveloperblog.app.ws.UserRepository;
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 import com.appsdeveloperblog.app.ws.service.UserService;
+import com.appsdeveloperblog.app.ws.shared.Utils;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private Utils utils;
+
     /**
      * Creates a new record and persists it
      *
@@ -59,18 +63,22 @@ public class UserServiceImpl implements UserService {
         // already exists in the database
         // If there is such a user, throw an exception
         UserEntity userWithSameEmail = userRepository.findByEmail(user.getEmail());
-        if (userWithSameEmail != null) throw new RuntimeException("email already exists");
+        if (userWithSameEmail != null)
+            throw new RuntimeException("email already exists");
 
-            // Create a new Entity, and copy properties
-            // from the data transfer object parameter to it
-            UserEntity userEntity = new UserEntity();
+        // Create a new Entity, and copy properties
+        // from the data transfer object parameter to it
+        UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
+
+        // Generate a publicly shareable user id and update the userEntity
+        String publicUserId = utils.generateUserId(30);
+        userEntity.setUserId(publicUserId);
 
         // Will write the logic to set these later,
         // dummy values for now
         // These values MUST be set since they are required columns
         // in the database table
-        userEntity.setUserId("testUserId");
         userEntity.setEncryptedPassword("testEncryptedPassword");
 
         // Use 'save' method (provided by Spring data JPA) to
