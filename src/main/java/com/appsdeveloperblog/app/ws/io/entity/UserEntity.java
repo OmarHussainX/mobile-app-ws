@@ -51,8 +51,9 @@ public class UserEntity implements Serializable {
     @Column(nullable=false, length=50)
     private String lastName;
 
-    @Column(nullable=false, length=120, unique=true) // this field must have unique values
-    private String email;
+ // @Column(nullable=false, length=120, unique=true) // field must have unique values
+    @Column(nullable=false, length=120)
+    private String email; // add logic to ensure that email addresses aren't duplicated
 
     @Column(nullable=false)
     private String encryptedPassword;

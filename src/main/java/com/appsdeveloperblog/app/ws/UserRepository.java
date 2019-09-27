@@ -40,6 +40,10 @@ but it could be any other persistence mechanism) using an abstract API)
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
     // Provides generic methods to save, read, update and delete
     // If needed, custom methods can be defined, e.g. to find a
-    // user by email
-    // UserEntity findUSerByEmail(String email);
+    // user by email, simply wrote the following method using Spring JPA
+    // query language: 'find + by + field' which takes as
+    // parameter an object with type that matches the field, and returns
+    // the matching record as an Entity instance, or null if none is found
+    UserEntity findByEmail(String email);
+
 }

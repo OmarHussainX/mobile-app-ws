@@ -55,9 +55,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto createUser(UserDto user) {
 
-        // Create a new Entity, and copy properties
-        // from the data transfer object parameter to it
-        UserEntity userEntity = new UserEntity();
+        // Check the database to see if a user with the submitted email
+        // already exists in the database
+        // If there is such a user, throw an exception
+        UserEntity userWithSameEmail = userRepository.findByEmail(user.getEmail());
+        if (userWithSameEmail != null) throw new RuntimeException("email already exists");
+
+            // Create a new Entity, and copy properties
+            // from the data transfer object parameter to it
+            UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
 
         // Will write the logic to set these later,
