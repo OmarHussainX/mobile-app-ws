@@ -10,6 +10,9 @@ project explores the creation of a RESTful Web Service in Java [(Maven build)](h
 <br/>Starter for using Spring Data JPA with Hibernate
 * [MySQL Connector/J](https://mvnrepository.com/artifact/mysql/mysql-connector-java)
 <br/>JDBC Type 4 driver for MySQL
+* [Spring Boot Security Starter](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security)
+<br/>Starter for using Spring Security (secures all endpoints by default)
+* [JSON Web Token Support For The JVM](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt)
 * [Spring Boot Test Starter](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test)
 <br/>Starter for testing Spring Boot applications with libraries including JUnit, Hamcrest and Mockito
 

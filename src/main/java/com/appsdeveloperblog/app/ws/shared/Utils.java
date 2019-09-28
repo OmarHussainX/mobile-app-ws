@@ -17,7 +17,7 @@ public class Utils {
         for (int i = 0; i < length; i++) {
             returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
         }
-        return new String(returnValue);
+        return String.valueOf(returnValue);
     }
 
     public String generateUserId(int length) {

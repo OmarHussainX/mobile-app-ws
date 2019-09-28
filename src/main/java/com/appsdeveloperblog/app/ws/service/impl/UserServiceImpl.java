@@ -7,6 +7,7 @@ import com.appsdeveloperblog.app.ws.shared.Utils;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /*
@@ -48,6 +49,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private Utils utils;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     /**
      * Creates a new record and persists it
      *
@@ -75,11 +79,8 @@ public class UserServiceImpl implements UserService {
         String publicUserId = utils.generateUserId(30);
         userEntity.setUserId(publicUserId);
 
-        // Will write the logic to set these later,
-        // dummy values for now
-        // These values MUST be set since they are required columns
-        // in the database table
-        userEntity.setEncryptedPassword("testEncryptedPassword");
+        // Use bcrypt to encrypt the user's password before persisting
+        userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         // Use 'save' method (provided by Spring data JPA) to
         // persist Entity data into the database
